@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="signUp_sex">
+        <item>성별을 선택해주세요.</item>
+        <item>남자</item>
+        <item>여자</item>
+    </string-array>
+    <string-array name="signUp_height">
+        <item>키를 선택해주세요. (cm)</item>
+        <item>150 미만</item>
+        <item>150 ~ 159</item>
+        <item>160 ~ 169</item>
+        <item>170 ~ 179</item>
+        <item>180 ~ 189</item>
+        <item>190 이상</item>
+    </string-array>
+    <string-array name="signUp_weight">
+        <item>몸무게를 선택해주세요. (kg)</item>
+        <item>40 미만</item>
+        <item>40 ~ 49</item>
+        <item>50 ~ 59</item>
+        <item>60 ~ 69</item>
+        <item>70 ~ 79</item>
+        <item>80 ~ 89</item>
+        <item>90 ~ 99</item>
+        <item>100 이상</item>
+    </string-array>
+</resources>

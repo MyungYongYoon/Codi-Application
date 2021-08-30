@@ -50,7 +50,6 @@ class SignInFragment : BaseSessionFragment<FragmentSigninBinding, SignInViewMode
             userStatusEvent.observe(viewLifecycleOwner) {
                 when (it) {
                     UserStatus.NOT_USER -> showErrorDialog("로그인에 실패했습니다.\n아이디나 비밀번호를 확인해주세요.")
-                    UserStatus.WAIT_APPROVE -> showErrorDialog("가입 승인 대기중이에요.\n공간 관리자님께 문의해주세요.")
                     UserStatus.USER -> viewmodel.saveUserInfo()
                     else -> showErrorDialog("오류가 발생했습니다. 다시 시도하거나 문의해주세요.") }
             }
@@ -80,7 +79,7 @@ class SignInFragment : BaseSessionFragment<FragmentSigninBinding, SignInViewMode
             }
             loginBtn.setOnClickListener {
                 if (checkServiceState()){
-                   // if (nextBtnAvailable) { viewmodel.sendSignInInfo(getUserId(), getUserPwd()) }
+                    if (nextBtnAvailable) { viewmodel.sendSignInInfo(getUserId(), getUserPwd()) }
                 }else{ showToast("인터넷 연결이 불안정합니다.\nWifi 상태를 체킹해주세요.") }
             }
         }

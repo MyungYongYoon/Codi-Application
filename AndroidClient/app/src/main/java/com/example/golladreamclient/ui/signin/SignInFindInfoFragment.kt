@@ -58,8 +58,7 @@ class SignInFindInfoFragment : BaseSessionFragment<FragmentSigninFindInfoBinding
             invalidUserIdEventLiveData.observe(viewLifecycleOwner) { setIdErrorMessage(it) }
             validUserIdEventLiveData.observe(viewLifecycleOwner){ setIdEmptyMessage() }
             findInfoEventLiveData.observe(viewLifecycleOwner){
-                /*viewmodel.sendFindInfo(getFindInfoType(), getUserName(), getUserBirthday(),
-                    getUserSmsInfo(), getUserName2(), getUserId())*/
+                viewmodel.sendFindInfo(getFindInfoType(), getUserName(), getUserBirthday(), getUserName2(), getUserId())
             }
             onSuccessFindInfo.observe(viewLifecycleOwner){
                 if (it==""){

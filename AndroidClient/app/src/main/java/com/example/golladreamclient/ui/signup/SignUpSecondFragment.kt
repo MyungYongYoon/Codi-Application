@@ -38,10 +38,7 @@ class SignUpSecondFragment : BaseSessionFragment<FragmentSignupSecondBinding, Si
             }else ->{ connectionManager = requireContext().getSystemService()!! }
         }
         viewbinding.fragmentContent.setOnClickListener { hideKeyboard(it) }
-        requireActivity().onBackPressedDispatcher.addCallback(this){
-            viewmodel.clearSecondFragmentVar()
-            findNavController().navigate(R.id.action_signUpSecondFragment_pop)
-        }
+        
     }
 
     override fun initDataBinding(savedInstanceState: Bundle?) {

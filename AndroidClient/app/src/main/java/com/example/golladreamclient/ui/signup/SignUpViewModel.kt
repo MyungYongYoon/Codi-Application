@@ -3,10 +3,10 @@ package com.example.golladreamclient.ui.signup
 import android.app.Application
 import androidx.lifecycle.LiveData
 import com.example.golladreamclient.base.BaseSessionViewModel
-import com.example.golladreamclient.data.model.SignUpInfo
+import com.example.golladreamclient.data.ServerAPI
+import com.example.golladreamclient.data.model.ReceiverUser
 import com.example.golladreamclient.utils.RegularExpressionUtils
 import com.example.golladreamclient.utils.SingleLiveEvent
-import io.reactivex.Single
 
 class SignUpViewModel(application: Application) : BaseSessionViewModel(application) {
 
@@ -82,11 +82,19 @@ class SignUpViewModel(application: Application) : BaseSessionViewModel(applicati
     val invalidUserSexEventLiveData: LiveData<String> get() = _invalidUserSexEventLiveData
     private val _validUserSexEventLiveData = SingleLiveEvent<Any>()
     val validUserSexEventLiveData: LiveData<Any> get() = _validUserSexEventLiveData
+    private val _invalidUserHeightEventLiveData = SingleLiveEvent<String>()
+    val invalidUserHeightEventLiveData: LiveData<String> get() = _invalidUserHeightEventLiveData
+    private val _validUserHeightEventLiveData = SingleLiveEvent<Any>()
+    val validUserHeightEventLiveData: LiveData<Any> get() = _validUserHeightEventLiveData
+    private val _invalidUserWeightEventLiveData = SingleLiveEvent<String>()
+    val invalidUserWeightEventLiveData: LiveData<String> get() = _invalidUserWeightEventLiveData
+    private val _validUserWeightEventLiveData = SingleLiveEvent<Any>()
+    val validUserWeightEventLiveData: LiveData<Any> get() = _validUserWeightEventLiveData
     private val _saveSignUpInfoEventLiveData = SingleLiveEvent<Any>()
     val saveSignUpInfoEventLiveData: LiveData<Any> get() = _saveSignUpInfoEventLiveData
 
     private var personalSignUpInfo : PersonalSignUpInfo ?= null
-    data class PersonalSignUpInfo(val userName : String, val userBirthday: String, val userSex: String)
+    data class PersonalSignUpInfo(val userName : String, val userBirthday: String, val userSex: String, val userHeight: String, val userWeight: String)
 
     private fun checkForUserName(userName: String) : Boolean{
         return if (userName.isBlank() || userName.isEmpty()) {
@@ -103,7 +111,6 @@ class SignUpViewModel(application: Application) : BaseSessionViewModel(applicati
             true}
     }
 
-
     private fun checkForUserBirthday(userBirthday: String) : Boolean{
         return if (userBirthday.isBlank() || userBirthday.isEmpty()) {
             _invalidBirthInfoEventLiveData.postValue("생년월일을 입력해주세요.")
@@ -117,15 +124,48 @@ class SignUpViewModel(application: Application) : BaseSessionViewModel(applicati
         }
     }
 
-    fun checkForSaveSignUpInfo(userName : String, userBirthday : String, usersSmsInfo : String) {
+    private fun checkForUserSex(userSex: String?) : Boolean {
+        return if (userSex == null) {
+            _invalidUserSexEventLiveData.postValue("성별을 선택해주세요.")
+            false
+        } else {
+            _validUserSexEventLiveData.call()
+            true
+        }
+    }
+
+    private fun checkForUserHeight(userHeight: String?) : Boolean {
+        return if (userHeight == null) {
+            _invalidUserHeightEventLiveData.postValue("키를 선택해주세요.")
+            false
+        } else {
+            _validUserHeightEventLiveData.call()
+            true
+        }
+    }
+
+    private fun checkForUserWeight(userWeight: String?) : Boolean {
+        return if (userWeight == null) {
+            _invalidUserWeightEventLiveData.postValue("몸무게를 선택해주세요.")
+            false
+        } else {
+            _validUserWeightEventLiveData.call()
+            true
+        }
+    }
+
+    fun checkForSaveSignUpInfo(userName : String, userBirthday : String, userSex : String?, userHeight: String?, userWeight: String?) {
         val checkName = checkForUserName(userName)
         val checkBirthInfo = checkForUserBirthday(userBirthday)
-        if (checkName && checkBirthInfo ) _saveSignUpInfoEventLiveData.call()
+        val checkForUserSex = checkForUserSex(userSex)
+        val checkForUserHeight = checkForUserHeight(userHeight)
+        val checkForUserWeight = checkForUserWeight(userWeight)
+        if (checkName && checkBirthInfo && checkForUserSex && checkForUserHeight && checkForUserWeight ) _saveSignUpInfoEventLiveData.call()
     }
 
 
-    fun saveSignUpInfo(userName : String, userBirthday : String, userSex : String){
-        personalSignUpInfo = PersonalSignUpInfo(userName, userBirthday, userSex)
+    fun saveSignUpInfo(userName : String, userBirthday : String, userSex : String, userHeight : String, userWeight : String){
+        personalSignUpInfo = PersonalSignUpInfo(userName, userBirthday, userSex, userHeight, userWeight)
     }
 
 
@@ -151,26 +191,19 @@ class SignUpViewModel(application: Application) : BaseSessionViewModel(applicati
     val onSuccessSignUpEvent : LiveData<Any> get() = _onSuccessSignUpEvent
 
     var checkedId : String ?= null
-    private var signUpInfo : SignUpInfo? =null
+    private var receiverUserInfo : ReceiverUser? =null
 
     fun clearSecondFragmentVar(){
-        signUpInfo = null
+        receiverUserInfo = null
         clearCheckedId() }
 
     fun clearCheckedId() {checkedId = null}
 
     fun checkIdFromServer(userId: String) {
-        //TODO
-        /*apiCall(
-            Single.zip(userRepository.checkIdFromWaitingUser(userId), userRepository.checkIdFromAllowedUser(userId),
-            BiFunction<Boolean, Boolean, Boolean> { waitingIdExist, allowedIdExist ->
-                if (waitingIdExist) return@BiFunction false
-                else if (allowedIdExist) return@BiFunction false
-                return@BiFunction true
-            }),
-            {   if (it) checkedId = userId
-                _checkIdEventLiveData.postValue(it)
-            })*/
+        apiCall(ServerAPI.create().checkIdUsable(userId),
+            {
+            checkedId = userId
+            _checkIdEventLiveData.postValue(it) })
     }
 
     private fun checkForUserIdDuplicated(userId: String): Boolean {
@@ -229,8 +262,8 @@ class SignUpViewModel(application: Application) : BaseSessionViewModel(applicati
 
 
     fun sendSignUpInfoToServer(userId : String, userPwd : String){
-        signUpInfo = SignUpInfo(personalSignUpInfo!!.userName, personalSignUpInfo!!.userBirthday, personalSignUpInfo!!.userSex, userId, userPwd)
-        //TODO
-        //apiCall(userRepository.signUp(signUpInfo!!), { _onSuccessSignUpEvent.call() })
+        receiverUserInfo = ReceiverUser(personalSignUpInfo!!.userName, personalSignUpInfo!!.userBirthday,
+            personalSignUpInfo!!.userHeight, personalSignUpInfo!!.userWeight, personalSignUpInfo!!.userSex, userId, userPwd)
+        apiCall(ServerAPI.create().registerUser(receiverUserInfo!!), { _onSuccessSignUpEvent.call()})
     }
 }

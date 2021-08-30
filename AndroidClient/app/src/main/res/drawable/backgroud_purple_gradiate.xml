@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <gradient
-        android:angle="45"
-    android:type="linear"
-    android:startColor= "@color/purple_300"
-    android:centerColor= "@color/purple_200"
-    android:endColor= "@color/purple_300"/>
+        android:angle="350"
+        android:gradientRadius="140%p"
+        android:type="radial"
+        android:startColor= "@color/white"
+        android:centerColor= "@color/white"
+        android:endColor= "@color/purple_200"/>
 </shape>
 

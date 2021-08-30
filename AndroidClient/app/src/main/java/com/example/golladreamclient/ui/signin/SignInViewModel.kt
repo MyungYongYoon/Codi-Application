@@ -3,6 +3,7 @@ package com.example.golladreamclient.ui.signin
 import android.app.Application
 import androidx.lifecycle.LiveData
 import com.example.golladreamclient.base.BaseSessionViewModel
+import com.example.golladreamclient.data.ServerAPI
 import com.example.golladreamclient.data.model.UserModel
 import com.example.golladreamclient.data.model.UserStatus
 import com.example.golladreamclient.utils.RegularExpressionUtils
@@ -99,30 +100,29 @@ class SignInViewModel(application: Application) : BaseSessionViewModel(applicati
     }
 
     //TODO
-/*
-    fun sendFindInfo(type : FindInfoType, userName : String, userBirthday : String, usersSmsInfo : String,
+    fun sendFindInfo(type : FindInfoType, userName : String, userBirthday : String,
                      userName2 : String, userId : String) {
         when(type) {
-            FindInfoType.ID -> { apiCall(userRepository.findId(userName, userBirthday, usersSmsInfo),{
-                _onSuccessFindInfo.postValue(it) }) }
-            FindInfoType.PWD ->  { apiCall(userRepository.findPwd(userName2, userId),{
-                _onSuccessFindInfo.postValue(it) }) }
+            FindInfoType.ID -> {
+                apiCall(ServerAPI.create().findUserId(userName, userBirthday),{
+                    if (it.exist) _onSuccessFindInfo.postValue(it.userId!!)
+                    else _onSuccessFindInfo.postValue("") }) }
+            FindInfoType.PWD ->  {
+                apiCall(ServerAPI.create().findUserPwd(userName2, userId),{
+                    if (it.exist) _onSuccessFindInfo.postValue(it.userPwd!!)
+                    else _onSuccessFindInfo.postValue("")
+                })
+            }
         }
     }
 
     fun sendSignInInfo(userId : String, userPwd : String) {
-        apiCall(
-            Single.zip(userRepository.checkingAllowedSignIn(userId, userPwd), userRepository.checkingWaitingSignIn(userId, userPwd),
-                BiFunction<ReceiverSignIn, Boolean, UserStatus> { receivedAllowedData, waitingBoolean ->
-                    var status = UserStatus.NOT_USER
-                    if (receivedAllowedData.boolean) {
-                        userData = receivedAllowedData.userdata
-                        status = UserStatus.USER
-                    }
-                    if (waitingBoolean) status = UserStatus.WAIT_APPROVE
-                    return@BiFunction status
-                }), {  _userStatusEvent.postValue(it) })
-    }*/
+        apiCall(ServerAPI.create().checkUserInfo(userId, userPwd), {
+            if (it.exist){ userData = it.user!!.getUserModel()
+                _userStatusEvent.postValue(UserStatus.USER)
+            }else _userStatusEvent.postValue(UserStatus.NOT_USER)
+        })
+    }
 
     fun saveUserInfo() {
         val context = getApplication<Application>().applicationContext

@@ -5,7 +5,9 @@ import com.example.springServer.user.UserRepository
 import com.example.springServer.user.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 
+@Configuration
 class Configuration {
     @Autowired
     private lateinit var userRepository: UserRepository

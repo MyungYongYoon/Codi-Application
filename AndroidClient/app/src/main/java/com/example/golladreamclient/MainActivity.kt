@@ -78,7 +78,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>() 
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
             viewbinding.toolbar.setNavigationOnClickListener{ findNavController(R.id.nav_host).navigateUp() }   //이거 필요한가?
             when (destination.id){
-                R.id.signInFragment, R.id.signInFindInfoFragment,
+                R.id.signInFragment, R.id.signInFindInfoFragment, R.id.signInFindInfoResultFragment,
                 R.id.signUpPermissionFragment, R.id.signUpFirstFragment, R.id.signUpSecondFragment -> showToolbarTitle("")
                 else -> hideToolbar()
             }

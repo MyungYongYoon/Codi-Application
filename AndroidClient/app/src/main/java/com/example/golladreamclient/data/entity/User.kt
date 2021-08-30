@@ -13,8 +13,12 @@ data class User(
     var name: String = "",
     @ColumnInfo(name = "birth")
     var birth: String = "",
-    @ColumnInfo(name = "phone")
-    var sex: String = "",
+    @ColumnInfo(name = "height")
+    var height: String = "",
+    @ColumnInfo(name = "weight")
+    var weight: String = "",
+    @ColumnInfo(name = "sex")
+    var sex: String = ""
 ){
-    fun getUserModel() : UserModel { return UserModel(id, name, birth, sex) }
+    fun getUserModel() : UserModel { return UserModel(id, name, birth, height, weight, sex) }
 }

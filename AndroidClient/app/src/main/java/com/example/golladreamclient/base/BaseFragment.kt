@@ -22,6 +22,7 @@ import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
+//TODO : 키보드 관련 처리 함수 필요.
 abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() , BaseView {
 
     abstract val viewbinding : VB
