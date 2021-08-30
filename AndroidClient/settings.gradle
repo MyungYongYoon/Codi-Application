@@ -1,0 +1,2 @@
+rootProject.name = "GollaDreamClient"
+include ':app'
