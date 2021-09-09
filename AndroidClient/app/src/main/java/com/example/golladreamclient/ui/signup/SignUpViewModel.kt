@@ -200,7 +200,7 @@ class SignUpViewModel(application: Application) : BaseSessionViewModel(applicati
     fun clearCheckedId() {checkedId = null}
 
     fun checkIdFromServer(userId: String) {
-        apiCall(ServerAPI.create().checkIdUsable(userId),
+        apiCall(userRepository.checkIdFromServer(userId),
             {
             checkedId = userId
             _checkIdEventLiveData.postValue(it) })
@@ -264,6 +264,6 @@ class SignUpViewModel(application: Application) : BaseSessionViewModel(applicati
     fun sendSignUpInfoToServer(userId : String, userPwd : String){
         receiverUserInfo = ReceiverUser(personalSignUpInfo!!.userName, personalSignUpInfo!!.userBirthday,
             personalSignUpInfo!!.userHeight, personalSignUpInfo!!.userWeight, personalSignUpInfo!!.userSex, userId, userPwd)
-        apiCall(ServerAPI.create().registerUser(receiverUserInfo!!), { _onSuccessSignUpEvent.call()})
+        apiCall(userRepository.saveUserInfoAtServer(receiverUserInfo!!), { _onSuccessSignUpEvent.call()})
     }
 }

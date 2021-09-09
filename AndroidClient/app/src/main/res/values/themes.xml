@@ -32,4 +32,10 @@
     <style name="Theme.GollaDreamClient.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.GollaDreamClient.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="CropTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
 </resources>

@@ -1,9 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<!--android:background="@drawable/backgroud_purple_gradiate"-->
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:paddingHorizontal="20dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@color/transparent"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/main_home_hello"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="안녕하세요\n드림님!"
+            android:textColor="#de000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/transparent"
+            android:layout_weight="1"/>
+        <ImageButton
+            android:id="@+id/logout_btn"
+            android:layout_width="35sp"
+            android:layout_height="35sp"
+            android:src="@drawable/ic_logout"
+            android:background="@drawable/ic_logout" />
+    </LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="@color/transparent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:background="@drawable/view_border_light_gray"
+            android:padding="20dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="22dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_basic_profile_photo"
+                    android:background="@drawable/background_oval_light_purple"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="12dp"
+                    android:orientation="vertical">
+   <!--                 <TextView
+                        android:id="@+id/changeInfo_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_underline_light_gray"
+                        android:layout_gravity="end"
+                        android:layout_marginBottom="8dp"
+                        android:text="수정하기"
+                        android:textSize="12sp"
+                        android:textColor="@color/black_87"
+                        android:fontFamily="@font/notosanskr_regular_hestia" />-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="이름"
+                                android:textSize="12sp"
+                                android:textColor="@color/black_50"
+                                android:fontFamily="@font/notosanskr_regular_hestia" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="성별"
+                                android:textSize="12sp"
+                                android:textColor="@color/black_50"
+                                android:fontFamily="@font/notosanskr_regular_hestia" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="생년월일"
+                                android:textSize="12sp"
+                                android:textColor="@color/black_50"
+                                android:fontFamily="@font/notosanskr_regular_hestia" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="키(cm)"
+                                android:textSize="12sp"
+                                android:textColor="@color/black_50"
+                                android:fontFamily="@font/notosanskr_regular_hestia" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text="몸무게(kg)"
+                                android:textSize="12sp"
+                                android:textColor="@color/black_50"
+                                android:fontFamily="@font/notosanskr_regular_hestia" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/userName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text=" "
+                                android:textSize="12sp"
+                                android:textColor="@color/black_87"
+                                android:fontFamily="@font/notosanskr_regular_hestia" />
+                            <TextView
+                                android:id="@+id/userSex"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text=" "
+                                android:textSize="12sp"
+                                android:textColor="@color/black_87"
+                                android:fontFamily="@font/notosanskr_regular_hestia" />
+                            <TextView
+                                android:id="@+id/userBirthday"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text=" "
+                                android:textSize="12sp"
+                                android:textColor="@color/black_87"
+                                android:fontFamily="@font/notosanskr_regular_hestia" />
+                            <TextView
+                                android:id="@+id/userHeight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="8dp"
+                                android:text=" "
+                                android:textSize="12sp"
+                                android:textColor="@color/black_87"
+                                android:fontFamily="@font/notosanskr_regular_hestia" />
+                            <TextView
+                                android:id="@+id/userWeight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" "
+                                android:textSize="12sp"
+                                android:textColor="@color/black_87"
+                                android:fontFamily="@font/notosanskr_regular_hestia" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/changeInfo_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/view_border_light_gray"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="회원정보수정"
+                    android:fontFamily="@font/notosanskr_regular_hestia"
+                    android:textColor="@color/black_87"
+                    android:textSize="14sp" />
+                <Button
+                    android:id="@+id/withdrawal_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/view_border_light_gray"
+                    android:fontFamily="@font/notosanskr_regular_hestia"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="회원탈퇴"
+                    android:textColor="@color/black_87"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <Button
+        android:id="@+id/write_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="80dp"
+        android:paddingVertical="18dp"
+        android:drawablePadding="-100dp"
+        android:background="@drawable/view_border_light_gray"
+        android:fontFamily="@font/notosanskr_regular_hestia"
+        android:drawableStart="@drawable/ic_write"
+        android:textColor="@color/black_87"
+        android:textSize="14sp"
+        android:text="내 코디 평가 받으러 가기" />
+</LinearLayout>

@@ -12,8 +12,8 @@ class SplashViewModel(application: Application) : BaseSessionViewModel(applicati
     val onSuccessGettingToken: LiveData<Boolean> get() = _onSuccessGettingToken
 
     fun getUserStatus() {
-        apiCall(ServerAPI.create().checkIdUsable(authToken), {
-            if (it) _onSuccessGettingToken.postValue(true)
+        apiCall(userRepository.checkIdFromServer(authToken), {
+            if (!it) _onSuccessGettingToken.postValue(true)
             else _onSuccessGettingToken.postValue(false)
         })
     }

@@ -7,6 +7,9 @@
     <color name="purple_white">#FFDDA0DD</color>
     <color name="purple_light">#7d00d4</color>
     <color name="purple_dark">#460e51</color>
+    <color name="purple_dark_60">#80460e51</color>
+    <color name="purple_dark_20">#336200EE</color>
+    <color name="purple_yoon">#842DCE</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>

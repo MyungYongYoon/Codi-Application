@@ -99,16 +99,14 @@ class SignInViewModel(application: Application) : BaseSessionViewModel(applicati
         }
     }
 
-    //TODO
-    fun sendFindInfo(type : FindInfoType, userName : String, userBirthday : String,
-                     userName2 : String, userId : String) {
+    fun sendFindInfo(type : FindInfoType, userName : String, userBirthday : String, userName2 : String, userId : String) {
         when(type) {
             FindInfoType.ID -> {
-                apiCall(ServerAPI.create().findUserId(userName, userBirthday),{
+                apiCall(userRepository.findUserId(userName, userBirthday),{
                     if (it.exist) _onSuccessFindInfo.postValue(it.userId!!)
                     else _onSuccessFindInfo.postValue("") }) }
             FindInfoType.PWD ->  {
-                apiCall(ServerAPI.create().findUserPwd(userName2, userId),{
+                apiCall(userRepository.findUserPwd(userName2, userId),{
                     if (it.exist) _onSuccessFindInfo.postValue(it.userPwd!!)
                     else _onSuccessFindInfo.postValue("")
                 })
@@ -117,7 +115,7 @@ class SignInViewModel(application: Application) : BaseSessionViewModel(applicati
     }
 
     fun sendSignInInfo(userId : String, userPwd : String) {
-        apiCall(ServerAPI.create().checkUserInfo(userId, userPwd), {
+        apiCall(userRepository.checkUserInfoFromServer(userId, userPwd), {
             if (it.exist){ userData = it.user!!.getUserModel()
                 _userStatusEvent.postValue(UserStatus.USER)
             }else _userStatusEvent.postValue(UserStatus.NOT_USER)

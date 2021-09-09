@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/back_btn"
+                android:layout_width="13dp"
+                android:layout_height="23dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:background="@drawable/ic_arrow_back"/>
+            <!--            <TextView
+                            android:id="@+id/reserve_add_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:layout_marginRight="20dp"
+                            android:text="완료"
+                            android:gravity="center"
+                            android:textSize="12sp"
+                            android:textColor="@color/purple_dark"
+                            android:background="@color/transparent"
+                            android:fontFamily="@font/notosanskr_bold_hestia"/>-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/state_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="16dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/black_87"
+            app:layout_constraintBottom_toBottomOf="@id/sign_up_company_info_state2"
+            app:layout_constraintEnd_toEndOf="@id/sign_up_company_info_guide_v80"
+            app:layout_constraintStart_toStartOf="@id/sign_up_company_info_guide_v20"
+            app:layout_constraintTop_toTopOf="@id/sign_up_company_info_state2" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/sign_up_company_info_guide_v20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1"  />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/sign_up_company_info_guide_v80"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+        <ImageView
+            android:id="@+id/sign_up_company_info_state1"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/background_oval_purple"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/sign_up_company_info_guide_v20"
+            app:layout_constraintStart_toStartOf="@id/sign_up_company_info_guide_v20"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/sign_up_company_info_state1"
+            app:layout_constraintEnd_toEndOf="@id/sign_up_company_info_state1"
+            app:layout_constraintStart_toStartOf="@id/sign_up_company_info_state1"
+            app:layout_constraintTop_toTopOf="@id/sign_up_company_info_state1" />
+        <ImageView
+            android:id="@+id/sign_up_company_info_state2"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/background_oval_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:textColor="@color/purple_dark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/sign_up_company_info_state2"
+            app:layout_constraintEnd_toEndOf="@id/sign_up_company_info_state2"
+            app:layout_constraintStart_toStartOf="@id/sign_up_company_info_state2"
+            app:layout_constraintTop_toTopOf="@id/sign_up_company_info_state2" />
+        <ImageView
+            android:id="@+id/sign_up_company_info_state3"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/background_oval_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/sign_up_company_info_guide_v80"
+            app:layout_constraintStart_toStartOf="@id/sign_up_company_info_guide_v80"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:textColor="@color/purple_dark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/sign_up_company_info_state3"
+            app:layout_constraintEnd_toEndOf="@id/sign_up_company_info_state3"
+            app:layout_constraintStart_toStartOf="@id/sign_up_company_info_state3"
+            app:layout_constraintTop_toTopOf="@id/sign_up_company_info_state3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/text_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/state_layout"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosanskr_bold_hestia"
+            android:text="프로필 제출하기"
+            android:textColor="@color/black_87"
+            android:textSize="24sp" />
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/notosanskr_regular_hestia"
+            android:text="해당 개인정보는 드림님의 코디평가 및 추천에\n사용됩니다."
+            android:textColor="@color/black_87"
+            android:textSize="18sp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_layout"
+        android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="25dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:textSize="14sp"
+            android:textColor="@color/black_gray"
+            android:fontFamily="@font/notosanskr_regular_hestia" />
+        <EditText
+            android:id="@+id/edit_text_nameInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingVertical="8dp"
+            android:background="@drawable/edittext_underline_black20"
+            android:text=" "
+            android:singleLine="true"
+            android:focusable="false"
+            android:textSize="14sp"
+            android:fontFamily="@font/notosanskr_regular_hestia"
+            android:textColorHint="@color/black_60"
+            android:textColor="@color/black_87" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="생년월일"
+            android:textSize="14sp"
+            android:textColor="@color/black_gray"
+            android:fontFamily="@font/notosanskr_regular_hestia" />
+        <EditText
+            android:id="@+id/edit_text_birthInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingVertical="8dp"
+            android:background="@drawable/edittext_underline_black20"
+            android:text=" "
+            android:singleLine="true"
+            android:focusable="false"
+            android:textSize="14sp"
+            android:fontFamily="@font/notosanskr_regular_hestia"
+            android:textColorHint="@color/black_60"
+            android:textColor="@color/black_87" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="성별"
+            android:textSize="14sp"
+            android:textColor="@color/black_gray"
+            android:fontFamily="@font/notosanskr_regular_hestia" />
+        <EditText
+            android:id="@+id/edit_text_sexInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingVertical="8dp"
+            android:background="@drawable/edittext_underline_black20"
+            android:text=" "
+            android:singleLine="true"
+            android:focusable="false"
+            android:textSize="14sp"
+            android:fontFamily="@font/notosanskr_regular_hestia"
+            android:textColorHint="@color/black_60"
+            android:textColor="@color/black_87" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/height_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/weight_layout"
+                android:layout_weight="1"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/text_height"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="키"
+                    android:textSize="14sp"
+                    android:textColor="@color/black_gray"
+                    android:fontFamily="@font/notosanskr_regular_hestia" />
+                <EditText
+                    android:id="@+id/edit_text_heightInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:paddingVertical="8dp"
+                    android:background="@drawable/edittext_underline_black20"
+                    android:text=" "
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/notosanskr_regular_hestia"
+                    android:textColorHint="@color/black_60"
+                    android:textColor="@color/black_87" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/weight_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/height_layout"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="8dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/text_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="몸무게"
+                    android:textSize="14sp"
+                    android:textColor="@color/black_gray"
+                    android:fontFamily="@font/notosanskr_regular_hestia" />
+                <EditText
+                    android:id="@+id/edit_text_weightInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:paddingVertical="8dp"
+                    android:background="@drawable/edittext_underline_black20"
+                    android:text=" "
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/notosanskr_regular_hestia"
+                    android:textColorHint="@color/black_60"
+                    android:textColor="@color/black_87" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/changeInfo_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                app:layout_constraintTop_toBottomOf="@id/weight_layout"
+                android:layout_marginTop="17dp"
+                android:fontFamily="@font/notosanskr_regular_hestia"
+                android:text="@string/write_text1"
+                android:textColor="@color/black_50"
+                android:textSize="14sp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:paddingVertical="18dp"
+        android:background="@drawable/button_5dp_rectangle_purple"
+        android:text="제출하고 다음으로"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/notosanskr_bold_hestia"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

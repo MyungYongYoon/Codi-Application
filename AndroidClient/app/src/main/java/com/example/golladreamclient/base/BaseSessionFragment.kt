@@ -79,7 +79,7 @@ abstract class BaseSessionFragment<VB : ViewBinding, VM : BaseSessionViewModel> 
             //Snackbar.make(getFragmentBinding().root.rootView.findViewById(android.R.id.content), it, Snackbar.LENGTH_LONG).show()
             activity?.let { activity ->
                 val snackbar : Snackbar = Snackbar.make(activity.findViewById(android.R.id.content), str, Snackbar.LENGTH_SHORT)
-                snackbar.view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black_20))
+                snackbar.view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
                 snackbar.show() }
             //(snackbar.view.findViewById(R.id.snackbar_text) as TextView).maxLines = 5
         }
@@ -90,7 +90,7 @@ abstract class BaseSessionFragment<VB : ViewBinding, VM : BaseSessionViewModel> 
         if (isDetached) return
         activity?.let { activity ->
             val snackbar : Snackbar = Snackbar.make(activity.findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT)
-            snackbar.view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.black_20))
+            snackbar.view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
             snackbar.show() } }
 
 

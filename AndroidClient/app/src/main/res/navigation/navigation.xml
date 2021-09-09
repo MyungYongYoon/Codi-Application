@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation.xml"
     app:startDestination="@id/splashFragment">
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.golladreamclient.ui.splash.SplashFragment"
-        android:label="SplashFragment" >
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_introFragment"
             app:destination="@id/introFragment"
@@ -29,7 +31,8 @@
     <fragment
         android:id="@+id/introFragment"
         android:name="com.example.golladreamclient.ui.intro.IntroFragment"
-        android:label="IntroFragment">
+        android:label="IntroFragment"
+        tools:layout="@layout/fragment_intro">
         <action
             android:id="@+id/action_introFragment_to_signInGraph"
             app:destination="@id/signInGraph"
@@ -57,14 +60,30 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.golladreamclient.ui.main.MainFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_writeGraph"
+            app:destination="@id/writeGraph"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" >
+            <argument
+                android:name="userInfo"
+                app:argType="com.example.golladreamclient.data.model.UserModel"
+                app:nullable="true"
+                android:defaultValue="@null" />
+        </action>
+    </fragment>
     <navigation
         android:id="@+id/signInGraph"
         app:startDestination="@id/signInFragment">
         <fragment
             android:id="@+id/signInFragment"
             android:name="com.example.golladreamclient.ui.signin.SignInFragment"
-            android:label="SignInFragment" >
+            android:label="SignInFragment"
+            tools:layout="@layout/fragment_signin">
             <action
                 android:id="@+id/action_signInFragment_to_mainFragment"
                 app:destination="@id/mainFragment"
@@ -81,7 +100,8 @@
         <fragment
             android:id="@+id/signInFindInfoFragment"
             android:name="com.example.golladreamclient.ui.signin.SignInFindInfoFragment"
-            android:label="SignInFindInfoFragment" >
+            android:label="SignInFindInfoFragment"
+            tools:layout="@layout/fragment_signin_find_info">
             <action
                 android:id="@+id/action_signInFindInfoFragment_to_signInFindInfoResultFragment"
                 app:destination="@id/signInFindInfoResultFragment"
@@ -94,7 +114,8 @@
         <fragment
             android:id="@+id/signInFindInfoResultFragment"
             android:name="com.example.golladreamclient.ui.signin.SignInFindInfoResultFragment"
-            android:label="SignInFindInfoResultFragment" >
+            android:label="SignInFindInfoResultFragment"
+            tools:layout="@layout/fragment_signin_find_info">
             <action
                 android:id="@+id/action_signInFindInfoResultFragment_pop"
                 app:popUpTo="@id/signInFindInfoResultFragment"
@@ -114,7 +135,8 @@
         <fragment
             android:id="@+id/signUpPermissionFragment"
             android:name="com.example.golladreamclient.ui.signup.SignUpPermissionFragment"
-            android:label="SignUpPermissionFragment" >
+            android:label="SignUpPermissionFragment"
+            tools:layout="@layout/fragment_signup_permission">
             <action
                 android:id="@+id/action_signUpPermissionFragment_to_signUpFirstFragment"
                 app:destination="@id/signUpFirstFragment"
@@ -126,7 +148,8 @@
         <fragment
             android:id="@+id/signUpFirstFragment"
             android:name="com.example.golladreamclient.ui.signup.SignUpFirstFragment"
-            android:label="SignUpFirstFragment" >
+            android:label="SignUpFirstFragment"
+            tools:layout="@layout/fragment_signup_first">
             <action
                 android:id="@+id/action_signUpFirstFragment_to_signUpSecondFragment"
                 app:destination="@id/signUpSecondFragment"
@@ -146,7 +169,8 @@
         <fragment
             android:id="@+id/signUpSecondFragment"
             android:name="com.example.golladreamclient.ui.signup.SignUpSecondFragment"
-            android:label="SignUpSecondFragment" >
+            android:label="SignUpSecondFragment"
+            tools:layout="@layout/fragment_signup_second">
             <action
                 android:id="@+id/action_signUpSecondFragment_pop"
                 app:popUpTo="@id/signUpGraph"
@@ -155,6 +179,139 @@
                 app:exitAnim="@anim/slide_exit"
                 app:popEnterAnim="@anim/slide_pop_enter"
                 app:popExitAnim="@anim/slide_pop_exit"/>
+        </fragment>
+    </navigation>
+    <navigation
+        android:id="@+id/writeGraph"
+        app:startDestination="@id/writeLoadingFragment">
+        <argument
+            android:name="userInfo"
+            app:argType="com.example.golladreamclient.data.model.UserModel"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <fragment
+            android:id="@+id/writeLoadingFragment"
+            android:name="com.example.golladreamclient.ui.main.write.WriteLoadingFragment"
+            android:label="WriteLoadingFragment"
+            tools:layout="@layout/fragment_write_loading">
+            <argument
+                android:name="userInfo"
+                app:argType="com.example.golladreamclient.data.model.UserModel"
+                app:nullable="true"
+                android:defaultValue="@null" />
+            <action
+                android:id="@+id/action_writeLoadingFragment_to_writeFirstFragment"
+                app:destination="@id/writeFirstFragment"
+                app:popUpTo="@id/writeLoadingFragment"
+                app:popUpToInclusive="true"
+                app:enterAnim="@anim/slide_enter"
+                app:exitAnim="@anim/slide_exit"
+                app:popEnterAnim="@anim/slide_pop_enter"
+                app:popExitAnim="@anim/slide_pop_exit" >
+                <argument
+                    android:name="userInfo"
+                    app:argType="com.example.golladreamclient.data.model.UserModel"
+                    app:nullable="true"
+                    android:defaultValue="@null" />
+            </action>
+            <action
+                android:id="@+id/action_writeLoadingFragment_pop"
+                app:popUpTo="@id/writeLoadingFragment"
+                app:popUpToInclusive="true"
+                app:enterAnim="@anim/slide_enter"
+                app:exitAnim="@anim/slide_exit"
+                app:popEnterAnim="@anim/slide_pop_enter"
+                app:popExitAnim="@anim/slide_pop_exit" />
+        </fragment>
+        <fragment
+            android:id="@+id/writeFirstFragment"
+            android:name="com.example.golladreamclient.ui.main.write.WriteFirstFragment"
+            android:label="WriteFirstFragment"
+            tools:layout="@layout/fragment_write_first">
+            <argument
+                android:name="userInfo"
+                app:argType="com.example.golladreamclient.data.model.UserModel"
+                app:nullable="true"
+                android:defaultValue="@null" />
+            <action
+                android:id="@+id/action_writeFirstFragment_to_writeSecondFragment"
+                app:destination="@id/writeSecondFragment"
+                app:enterAnim="@anim/slide_enter"
+                app:exitAnim="@anim/slide_exit"
+                app:popEnterAnim="@anim/slide_pop_enter"
+                app:popExitAnim="@anim/slide_pop_exit"/>
+            <action
+                android:id="@+id/action_writeFirstFragment_pop"
+                app:popUpTo="@id/writeFirstFragment"
+                app:popUpToInclusive="true"
+                app:enterAnim="@anim/slide_enter"
+                app:exitAnim="@anim/slide_exit"
+                app:popEnterAnim="@anim/slide_pop_enter"
+                app:popExitAnim="@anim/slide_pop_exit"/>
+        </fragment>
+        <fragment
+            android:id="@+id/writeSecondFragment"
+            android:name="com.example.golladreamclient.ui.main.write.WriteSecondFragment"
+            android:label="WriteSecondFragment"
+            tools:layout="@layout/fragment_write_second">
+            <action
+                android:id="@+id/action_writeSecondFragment_to_writeThirdFragment"
+                app:destination="@id/writeThirdFragment"
+                app:enterAnim="@anim/slide_enter"
+                app:exitAnim="@anim/slide_exit"
+                app:popEnterAnim="@anim/slide_pop_enter"
+                app:popExitAnim="@anim/slide_pop_exit"/>
+            <action
+                android:id="@+id/action_writeSecondFragment_pop"
+                app:popUpTo="@id/writeSecondFragment"
+                app:popUpToInclusive="true"
+                app:enterAnim="@anim/slide_enter"
+                app:exitAnim="@anim/slide_exit"
+                app:popEnterAnim="@anim/slide_pop_enter"
+                app:popExitAnim="@anim/slide_pop_exit"/>
+        </fragment>
+        <fragment
+            android:id="@+id/writeThirdFragment"
+            android:name="com.example.golladreamclient.ui.main.write.WriteThirdFragment"
+            android:label="WriteThridFragment"
+            tools:layout="@layout/fragment_write_third">
+            <action
+                android:id="@+id/action_writeThirdFragment_to_writeImagePickerFragment"
+                app:destination="@id/writeImagePickerFragment"
+                app:enterAnim="@anim/slide_enter"
+                app:exitAnim="@anim/slide_exit"
+                app:popEnterAnim="@anim/slide_pop_enter"
+                app:popExitAnim="@anim/slide_pop_exit"/>
+            <action
+                android:id="@+id/action_writeThirdFragment_pop"
+                app:popUpTo="@id/writeThirdFragment"
+                app:popUpToInclusive="true"
+                app:enterAnim="@anim/slide_enter"
+                app:exitAnim="@anim/slide_exit"
+                app:popEnterAnim="@anim/slide_pop_enter"
+                app:popExitAnim="@anim/slide_pop_exit"/>
+        </fragment>
+        <fragment
+            android:id="@+id/writeImagePickerFragment"
+            android:name="com.example.golladreamclient.ui.main.image.WriteImagePickerFragment"
+            android:label="WriteImagePickerFragment"
+            tools:layout="@layout/fragment_image_picker">
+            <action
+                android:id="@+id/action_writeImagePickerFragment_to_imageCropperFragment"
+                app:destination="@id/writeImageCropperFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/writeImageCropperFragment"
+            android:name="com.example.golladreamclient.ui.main.image.WriteImageCropperFragment"
+            android:label="WriteImageCropperFragment"
+            tools:layout="@layout/fragment_image_cropper">
+            <argument
+                android:name="imageUriStr"
+                app:argType="string" />
+            <action
+                android:id="@+id/action_imageCropperFragment_pop_including_writeImagePickerFragment"
+                app:popUpTo="@id/writeImagePickerFragment"
+                app:popUpToInclusive="true" />
         </fragment>
     </navigation>
 </navigation>

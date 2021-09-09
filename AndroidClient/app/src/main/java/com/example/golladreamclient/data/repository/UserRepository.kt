@@ -1,12 +1,11 @@
 package com.example.golladreamclient.data.repository
 
 import android.app.Application
-import android.content.ContentValues
 import android.content.Context
-import android.util.Log
 import androidx.core.content.edit
 import com.example.golladreamclient.data.AppDatabase
-import com.example.golladreamclient.data.model.UserModel
+import com.example.golladreamclient.data.ServerAPI
+import com.example.golladreamclient.data.model.*
 import io.reactivex.Completable
 import io.reactivex.Single
 
@@ -76,6 +75,27 @@ class UserRepository(appDatabase: AppDatabase) {
             userdataDao.deleteUserData(userId)
             emitter.onComplete()
         }
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------
+
+    fun findUserId(userName : String, userBirthday : String) : Single<ReceiverUserIdItem> {
+        return ServerAPI.create().findUserId(userName, userBirthday)
+    }
+    fun findUserPwd(userName2 : String, userId : String) : Single<ReceiverUserPwdItem> {
+        return ServerAPI.create().findUserPwd(userName2, userId)
+    }
+    fun checkIdFromServer(userId: String) : Single<Boolean> {
+        return ServerAPI.create().checkIdUsable(userId)
+    }
+    fun checkUserInfoFromServer(userId : String, userPwd : String) : Single<ReceiverUserItem> {
+        return ServerAPI.create().checkUserInfo(userId, userPwd)
+    }
+    fun saveUserInfoAtServer(receiverUserInfo: ReceiverUser) : Single<ReceiverUser> {
+        return ServerAPI.create().registerUser(receiverUserInfo)
+    }
+    fun deleteUserInfoFromServer(userId : String) : Single<Boolean> {
+        return ServerAPI.create().withdrawalUser(userId)
     }
 
 

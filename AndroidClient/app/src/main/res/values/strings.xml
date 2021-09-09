@@ -2,6 +2,11 @@
     <string name="app_name">GollaDreamClient</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
+    <string name="write_text1"><u>프로필 정보가 다르신가요?</u></string>
+    <string name="permission_denied">해당 기능을 이용하기 위해 권한이 필요합니다.\n[설정] -> [권한]에서 권한을 허용할 수 있습니다.</string>
+    <string name="permission_camera">해당 기능을 이용하기 위해 [카메라] 권한이 필요합니다.</string>
+    <string name="permission_read_external_storage">해당 기능을 이용하기 위해 [저장소-읽기] 권한이 필요합니다.</string>
+    <string name="permission_write_external_storage">해당 기능을 이용하기 위해 [저장소-쓰기] 권한이 필요합니다.</string>
     <string name="permission_content1">골라드림은 회원님을 보호합니다.\n본 약관은 골라드림 앱 서비스의 이용과 관련하여 필요한 사항을 규정합니다.
         \n\n제1조(목적)\n\n
 이 약관은 업체 회사(전자상거래 사업자)가 운영하는 업체 사이버 ‘골라드림’에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 골라드림과 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.

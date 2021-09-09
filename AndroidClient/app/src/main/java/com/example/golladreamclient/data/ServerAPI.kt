@@ -17,10 +17,8 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface ServerAPI {
-
     companion object {
-        private const val BASE_URL = "http:/192.168.25.37:8080"   //TODO : (Linking change) local -> remote.
-
+        private const val BASE_URL = "http:/192.168.0.71:8080"   //TODO : (Linking change) local -> remote.
         fun create(): ServerAPI {
             val httpLoggingInterceptor = HttpLoggingInterceptor()
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -37,20 +35,22 @@ interface ServerAPI {
         }
     }
 
-    @GET("/user/check/id")
-    fun checkIdUsable(@Query("id") id: String): Single<Boolean>
-
-
-    @POST("/user/register")
-    fun registerUser(@Body body: ReceiverUser?) : Single<ReceiverUser>
-
-    @GET("/user/check/user")
-    fun checkUserInfo(@Query("id")id : String, @Query("pwd")pwd : String) : Single<ReceiverUserItem>
-
     @GET("/user/find/id")
     fun findUserId(@Query("name") name : String, @Query("birth") birth : String) : Single<ReceiverUserIdItem>
 
     @GET("/user/find/pwd")
     fun findUserPwd(@Query("name") name : String, @Query("id") id : String) : Single<ReceiverUserPwdItem>
+
+    @GET("/user/check/id")
+    fun checkIdUsable(@Query("id") id: String): Single<Boolean>
+
+    @GET("/user/check/user")
+    fun checkUserInfo(@Query("id")id : String, @Query("pwd")pwd : String) : Single<ReceiverUserItem>
+
+    @POST("/user/register")
+    fun registerUser(@Body body: ReceiverUser?) : Single<ReceiverUser>
+
+    @GET("/user/withdrawal")
+    fun withdrawalUser(@Query("id")id : String) : Single<Boolean>
 
 }

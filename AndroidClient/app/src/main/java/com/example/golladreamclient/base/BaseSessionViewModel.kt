@@ -51,17 +51,6 @@ abstract class BaseSessionViewModel(application: Application)  : AndroidViewMode
 
     init { _authToken = userRepository.getUserToken(application) }
 
-    private val _onSuccessGettingUserInfo = SingleLiveEvent<UserModel>()
-    val onSuccessGettingUserInfo : LiveData<UserModel> get() = _onSuccessGettingUserInfo
-    private val _onSuccessGettingNullUserInfo = SingleLiveEvent<UserModel>()
-    val onSuccessGettingNullUserInfo : LiveData<UserModel> get() = _onSuccessGettingNullUserInfo
-
-    fun getUserInfo()  {
-        apiCall(userRepository.getUserInfo(), {
-            _onSuccessGettingUserInfo.postValue(it) },
-            { _onSuccessGettingNullUserInfo.call() })
-    }
-
     private val _apiCallErrorEvent:SingleLiveEvent<String> = SingleLiveEvent()
     val apiCallErrorEvent: LiveData<String> get() = _apiCallErrorEvent
 

@@ -10,7 +10,7 @@
     android:gravity="center_vertical"
     android:singleLine="true"
     android:textSize="12sp"
-    android:textColor="@color/black_60"
+    android:textColor="@color/black"
     app:drawableTint="@color/black_87"
     app:tint="@color/white"
     tools:text="성별을 선택해주세요." />

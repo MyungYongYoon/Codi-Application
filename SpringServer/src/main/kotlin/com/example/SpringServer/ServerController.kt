@@ -10,14 +10,13 @@ class ServerController {
     @Autowired
     private lateinit var userService : UserService
 
-  /*  @GetMapping("/user/check/id")
-    fun checkIdUsable(@RequestParam("id") id: String) : Boolean {
-        return userService.checkIdUsable(id)
-    }*/
-
-    @PostMapping("/user/register")
-    fun registerUser(@RequestBody body: UserModel) : UserModel{
-        return userService.registerUser(body)
+    @GetMapping("/user/find/id")
+    fun findUserId(@RequestParam("name") name : String, @RequestParam("birth") birth : String) : UserIdItem {
+        return userService.findUserId(name, birth)
+    }
+    @GetMapping("/user/find/pwd")
+    fun findUserPwd(@RequestParam("name") name : String, @RequestParam("id") id : String) : UserPwdItem {
+        return userService.findUserPwd(name, id)
     }
     @GetMapping("/user/check/id")
     fun checkIdExist(@RequestParam("id") id: String) : Boolean {
@@ -27,12 +26,12 @@ class ServerController {
     fun checkUserInfo(@RequestParam("id") id : String, @RequestParam("pwd") pwd : String) : UserModelItem {
         return userService.checkUserInfo(id, pwd)
     }
-    @GetMapping("/user/find/id")
-    fun findUserId(@RequestParam("name") name : String, @RequestParam("birth") birth : String) : UserIdItem {
-        return userService.findUserId(name, birth)
+    @PostMapping("/user/register")
+    fun registerUser(@RequestBody body: UserModel) : UserModel{
+        return userService.registerUser(body)
     }
-    @GetMapping("/user/find/pwd")
-    fun findUserPwd(@RequestParam("name") name : String, @RequestParam("id") id : String) : UserPwdItem {
-        return userService.findUserPwd(name, id)
+    @GetMapping("/user/withdrawal")
+    fun withdrawalUser(@RequestParam("id") id : String) : Boolean {
+        return userService.withdrawalUser(id)
     }
 }

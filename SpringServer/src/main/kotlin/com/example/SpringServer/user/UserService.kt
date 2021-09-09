@@ -20,8 +20,17 @@ class UserService {
     constructor(userRepository : UserRepository){
         this.userRepository = userRepository
     }
-    fun registerUser(user : UserModel) : UserModel {
-        return userRepository.save(user.changeToUser()).changeToUserModel()
+    fun findUserId(name : String, birth : String ) : UserIdItem {
+        return when (val user = userRepository.findByNameAndBirth(name, birth)){
+            null -> UserIdItem(false, null)
+            else -> UserIdItem(true, user.id)
+        }
+    }
+    fun findUserPwd(name : String, id : String) : UserPwdItem {
+        return when (val user = userRepository.findByIdAndName(id, name)){
+            null -> UserPwdItem(false, null)
+            else -> UserPwdItem(true, user.pwd)
+        }
     }
     fun checkIdExist(id : String) : Boolean{
         return when (userRepository.findById(id)){
@@ -35,18 +44,16 @@ class UserService {
             else -> UserModelItem(true, user.changeToUserModel())
         }
     }
-    fun findUserId(name : String, birth : String ) : UserIdItem {
-        return when (val user = userRepository.findByNameAndBirth(name, birth)){
-            null -> UserIdItem(false, null)
-            else -> UserIdItem(true, user.id)
+    fun registerUser(user : UserModel) : UserModel {
+        return userRepository.save(user.changeToUser()).changeToUserModel()
+    }
+    fun withdrawalUser(id : String) : Boolean {
+        return when (userRepository.findById(id)){
+            null -> false
+            else -> { userRepository.deleteById(id)
+                true
+            }
         }
     }
-    fun findUserPwd(name : String, id : String) : UserPwdItem {
-        return when (val user = userRepository.findByIdAndName(id, name)){
-            null -> UserPwdItem(false, null)
-            else -> UserPwdItem(true, user.pwd)
-        }
-    }
-
 
 }

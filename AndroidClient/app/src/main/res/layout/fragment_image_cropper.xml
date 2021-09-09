@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <com.theartofdev.edmodo.cropper.CropImageView
+        android:id="@+id/image_cropper_view"
+        android:layout_width="match_parent"
+        android:background="@color/transparent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:cropAspectRatioX="1"
+        app:cropAspectRatioY="1"
+        app:cropFixAspectRatio="true"
+        app:cropInitialCropWindowPaddingRatio="0"
+        app:cropShape="rectangle" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/image_cropper_cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/notosanskr_regular_hestia"
+            android:gravity="center"
+            android:text="취소"
+            android:textColor="@color/black_87"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/image_cropper_complete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/notosanskr_regular_hestia"
+            android:gravity="center"
+            android:text="완료"
+            android:textColor="@color/black_87"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
