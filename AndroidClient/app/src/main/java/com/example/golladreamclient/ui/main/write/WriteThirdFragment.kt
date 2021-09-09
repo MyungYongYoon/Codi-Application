@@ -12,6 +12,7 @@ import androidx.navigation.navGraphViewModels
 import coil.load
 import com.example.golladreamclient.R
 import com.example.golladreamclient.base.BaseSessionFragment
+import com.example.golladreamclient.data.model.InputData
 import com.example.golladreamclient.databinding.FragmentWriteThirdBinding
 import java.io.File
 
@@ -55,11 +56,24 @@ class WriteThirdFragment  : BaseSessionFragment<FragmentWriteThirdBinding, Write
                 }
             }
         }
+        viewmodel.onSuccessGetRecommend.observe(viewLifecycleOwner){
+            //TODO
+            //이거 가져올때까지 apiCall -> 로딩 처리 필요.
+            //다음 페이지로 넘어가면서 (it) 전해주고 이를 뷰에 띄우기.
+        }
     }
 
     override fun initViewFinal(savedInstanceState: Bundle?) {
         viewbinding.photoEmptyLayout.setOnClickListener { checkPhotoAlbumPermission() }
         viewbinding.photoImage.setOnClickListener { checkPhotoAlbumPermission() }
+        viewbinding.submitBtn.setOnClickListener {
+            if (nextAvailable) {
+                selectedPicture?.let { viewmodel.saveThirdWriteInfo(it) }
+                val totalInfo : InputData? = viewmodel.getWriteInfo()
+                if (totalInfo == null) showToast("에러가 발생했습니다.")         //TODO : 에러처리
+                else viewmodel.postRecommendInput(totalInfo)
+            }
+        }
     }
 
     private fun checkPhotoAlbumPermission() {

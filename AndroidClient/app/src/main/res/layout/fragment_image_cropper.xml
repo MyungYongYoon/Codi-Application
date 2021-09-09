@@ -17,8 +17,7 @@
         app:cropShape="rectangle" />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:background="@color/white">
+        android:layout_height="62dp">
         <TextView
             android:id="@+id/image_cropper_cancel_button"
             android:layout_width="wrap_content"
@@ -27,7 +26,7 @@
             android:fontFamily="@font/notosanskr_regular_hestia"
             android:gravity="center"
             android:text="취소"
-            android:textColor="@color/black_87"
+            android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent" />
         <TextView
@@ -38,7 +37,7 @@
             android:fontFamily="@font/notosanskr_regular_hestia"
             android:gravity="center"
             android:text="완료"
-            android:textColor="@color/black_87"
+            android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.golladreamclient.R
-import com.example.golladreamclient.base.BaseFragment
 import com.example.golladreamclient.base.BaseSessionFragment
 import com.example.golladreamclient.databinding.FragmentWriteSecondBinding
 
@@ -24,7 +22,7 @@ class WriteSecondFragment : BaseSessionFragment<FragmentWriteSecondBinding, Writ
     }
 
     override fun initViewStart(savedInstanceState: Bundle?) {
-        viewmodel.saveThirdWriteInfo(null)
+        viewmodel.receiveThirdWriteInfo(null)
         viewbinding.backBtn.setOnClickListener { findNavController().navigate(R.id.action_writeSecondFragment_pop) }
     }
 

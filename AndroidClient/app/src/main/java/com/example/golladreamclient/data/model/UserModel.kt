@@ -14,4 +14,5 @@ data class UserModel(
     val sex: String = ""
 ) : Parcelable {
     fun getUserEntity() : User { return User(id, name, birth, height, weight, sex) }
+    fun getPersonalInfo() : PersonalInfo { return PersonalInfo(id, name, birth, height, weight, sex) }
 }

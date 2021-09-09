@@ -23,6 +23,7 @@
     <color name="black_gray">#444444</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray"> #E5E5E5</color>
+    <color name="gray_yoon">#D0D0D0</color>
     <color name="pink">#FFBEC3</color>
     <color name="pinkish_orange">#ff7146</color>
     <color name="transparent">#00000000</color>

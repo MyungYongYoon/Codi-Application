@@ -37,7 +37,7 @@ class WriteImageCropperFragment : BaseSessionFragment<FragmentImageCropperBindin
     private fun updateCroppedImage() {
         val croppedBitmapImage = viewbinding.imageCropperView.croppedImage
         val croppedImageFile = croppedBitmapImage.convertBitmapToFile(requireContext())
-        viewmodel.saveThirdWriteInfo(croppedImageFile)
+        viewmodel.receiveThirdWriteInfo(croppedImageFile)
         findNavController().navigate(R.id.action_imageCropperFragment_pop_including_writeImagePickerFragment)
     }
 }

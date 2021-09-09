@@ -1,8 +1,13 @@
 package com.example.springServer
 
+import com.example.springServer.recommend.InputData
+import com.example.springServer.recommend.OutputData
+import com.example.springServer.recommend.RecommendInfo
 import com.example.springServer.user.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
+import retrofit2.http.Body
+import java.time.LocalDateTime
 
 @RestController
 class ServerController {
@@ -34,4 +39,10 @@ class ServerController {
     fun withdrawalUser(@RequestParam("id") id : String) : Boolean {
         return userService.withdrawalUser(id)
     }
+
+    @PostMapping("recommend/input")
+    fun makeRecommend(@Body data: InputData): OutputData { //TODO : 머신러닝 모델들이랑 연결하기.
+        return OutputData(data.id, LocalDateTime.now().toString(), data.personalInfo, data.image, RecommendInfo())
+    }
+
 }

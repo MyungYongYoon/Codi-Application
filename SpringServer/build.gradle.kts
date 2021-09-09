@@ -32,8 +32,9 @@ dependencies {
 
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-	implementation ("com.h2database:h2:1.4.200")
 	runtimeOnly ("com.h2database:h2")
+	implementation ("com.h2database:h2")
+
 	// compileOnly("org.projectlombok:lombok")
 	// annotationProcessor("org.projectlombok:lombok")
 

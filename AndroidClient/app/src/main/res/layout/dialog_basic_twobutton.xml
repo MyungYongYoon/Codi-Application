@@ -1,66 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_gravity="center"
-    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_width="match_parent"
     android:layout_marginLeft="40dp"
     android:layout_marginRight="40dp"
-    app:cardElevation="0dp"
-    app:cardCornerRadius="12dp"
-    app:cardUseCompatPadding="true"
-    app:cardBackgroundColor="@color/transparent"
-    android:background="@drawable/view_12dp_white"  >
-    <LinearLayout
+    android:layout_gravity="center"
+    android:background="@color/white">
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="18dp"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/dialog_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="정말 로그아웃 하시겠어요?"
-            android:textSize="14sp"
-            android:textColor="@color/black_87"
-            android:fontFamily="@font/notosanskr_regular_hestia"/>
+        app:cardElevation="0dp"
+        app:cardCornerRadius="12dp"
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="@color/transparent"
+        android:background="@drawable/view_12dp_white"  >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="right">
-            <Button
-                android:id="@+id/dialog_close_btn"
+            android:padding="18dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/dialog_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:minHeight="0dp"
-                android:minWidth="0dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:text="취소"
-                android:textColor="@color/purple_dark"
-                android:fontFamily="@font/notosanskr_bold_hestia"
+                android:text="정말 로그아웃 하시겠어요?"
                 android:textSize="14sp"
-                android:background="@drawable/button_20dp_event_stroke_rectangle_purple"/>
-            <Button
-                android:id="@+id/dialog_custom_btn"
-                android:layout_width="wrap_content"
+                android:textColor="@color/black_87"
+                android:fontFamily="@font/notosanskr_regular_hestia"/>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="0dp"
-                android:minWidth="0dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:text="로그아웃"
-                android:textColor="@color/purple_dark"
-                android:fontFamily="@font/notosanskr_bold_hestia"
-                android:textSize="14sp"
-                android:background="@drawable/button_20dp_event_stroke_rectangle_purple"/>
+                android:layout_marginTop="20dp"
+                android:gravity="right">
+                <Button
+                    android:id="@+id/dialog_close_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:text="취소"
+                    android:textColor="@color/purple_dark"
+                    android:fontFamily="@font/notosanskr_bold_hestia"
+                    android:textSize="14sp"
+                    android:background="@drawable/button_20dp_event_stroke_rectangle_purple"/>
+                <Button
+                    android:id="@+id/dialog_custom_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:text="로그아웃"
+                    android:textColor="@color/purple_dark"
+                    android:fontFamily="@font/notosanskr_bold_hestia"
+                    android:textSize="14sp"
+                    android:background="@drawable/button_20dp_event_stroke_rectangle_purple"/>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

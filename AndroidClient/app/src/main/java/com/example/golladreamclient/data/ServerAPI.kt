@@ -1,24 +1,19 @@
 package com.example.golladreamclient.data
 
-import com.example.golladreamclient.data.model.ReceiverUser
-import com.example.golladreamclient.data.model.ReceiverUserItem
-import com.example.golladreamclient.data.model.ReceiverUserIdItem
-import com.example.golladreamclient.data.model.ReceiverUserPwdItem
+import com.example.golladreamclient.data.model.*
 import io.reactivex.Single
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.RequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ServerAPI {
     companion object {
-        private const val BASE_URL = "http:/192.168.0.71:8080"   //TODO : (Linking change) local -> remote.
+        private const val BASE_URL = "http:/192.168.25.29:8080"   //TODO : (Linking change) local -> remote.
         fun create(): ServerAPI {
             val httpLoggingInterceptor = HttpLoggingInterceptor()
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -52,5 +47,9 @@ interface ServerAPI {
 
     @GET("/user/withdrawal")
     fun withdrawalUser(@Query("id")id : String) : Single<Boolean>
+
+    @POST("recommend/input")
+    fun postRecommendInput(@Body data: InputData) : Single<OutputData>
+
 
 }
