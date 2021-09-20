@@ -1,10 +1,10 @@
 package com.example.golladreamclient.data.repository
 
-import com.example.golladreamclient.data.AppDatabase
 import com.example.golladreamclient.data.ServerAPI
-import com.example.golladreamclient.data.model.InputData
-import com.example.golladreamclient.data.model.OutputData
+import com.example.golladreamclient.data.model.ReceiverRecommendOutput
+import com.example.golladreamclient.data.model.ReceiverSaveInput
 import io.reactivex.Single
+import okhttp3.RequestBody
 
 class RecommendRepository() {
     companion object {
@@ -19,8 +19,12 @@ class RecommendRepository() {
         }
     }
 
-    fun postRecommendInput(data: InputData) : Single<OutputData> {
-        return ServerAPI.create().postRecommendInput(data)
+    fun postRecommendInput(mapData: HashMap<String, RequestBody>) : Single<ReceiverSaveInput> {
+        return ServerAPI.create().postRecommendInput(mapData)
+    }
+
+    fun getRecommendOutput(id : String, style : String, image : String) : Single<ReceiverRecommendOutput> {
+        return ServerAPI.create().getRecommendOutput(id, style, image)
     }
 
 }

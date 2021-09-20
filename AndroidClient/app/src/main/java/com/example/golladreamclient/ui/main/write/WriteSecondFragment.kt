@@ -44,25 +44,23 @@ class WriteSecondFragment : BaseSessionFragment<FragmentWriteSecondBinding, Writ
 
     private fun initButtonView(){
         viewbinding.run {
-            whiteColorBtn.setOnClickListener {  getSelectedColor(it) }
-            grayColorBtn.setOnClickListener { getSelectedColor(it) }
-            blackColorBtn.setOnClickListener { getSelectedColor(it) }
-            redColorBtn.setOnClickListener { getSelectedColor(it) }
-            orangeColorBtn.setOnClickListener { getSelectedColor(it) }
-            yellowColorBtn.setOnClickListener { getSelectedColor(it) }
-            lightGreenColorBtn.setOnClickListener { getSelectedColor(it) }
-            greenColorBtn.setOnClickListener { getSelectedColor(it) }
-            kakiColorBtn.setOnClickListener { getSelectedColor(it) }
-            lightBlueColorBtn.setOnClickListener { getSelectedColor(it) }
-            blueColorBtn.setOnClickListener { getSelectedColor(it) }
-            darkBlueColorBtn.setOnClickListener { getSelectedColor(it) }
-            purpleColorBtn.setOnClickListener { getSelectedColor(it) }
-            lightPinkColorBtn.setOnClickListener { getSelectedColor(it) }
-            pinkColorBtn.setOnClickListener { getSelectedColor(it) }
-            purpleColorBtn.setOnClickListener { getSelectedColor(it) }
-            brownColorBtn.setOnClickListener { getSelectedColor(it) }
-            otherColorBtn.setOnClickListener { getSelectedColor(it) }
-            noColorBtn.setOnClickListener { getSelectedColor(it) }
+            firstStyleBtn.setOnClickListener {  getSelectedColor(it) }
+            secondStyleBtn.setOnClickListener { getSelectedColor(it) }
+            thirdStyleBtn.setOnClickListener { getSelectedColor(it) }
+            fourthStyleBtn.setOnClickListener { getSelectedColor(it) }
+            fifthStyleBtn.setOnClickListener { getSelectedColor(it) }
+            sixStyleBtn.setOnClickListener { getSelectedColor(it) }
+            sevenStyleBtn.setOnClickListener { getSelectedColor(it) }
+            eightStyleBtn.setOnClickListener { getSelectedColor(it) }
+            nineStyleBtn.setOnClickListener { getSelectedColor(it) }
+            tenStyleBtn.setOnClickListener { getSelectedColor(it) }
+            elevenStyleBtn.setOnClickListener { getSelectedColor(it) }
+            twelveStyleBtn.setOnClickListener { getSelectedColor(it) }
+            thirteenStyleBtn.setOnClickListener { getSelectedColor(it) }
+            fourteenStyleBtn.setOnClickListener { getSelectedColor(it) }
+            fifteenStyleBtn.setOnClickListener { getSelectedColor(it) }
+            sixteenStyleBtn.setOnClickListener { getSelectedColor(it) }
+            seventeenStyleBtn.setOnClickListener { getSelectedColor(it) }
             radioGroup1.setOnCheckedChangeListener { _, _ ->
                 setButtonView()
             }
@@ -94,78 +92,75 @@ class WriteSecondFragment : BaseSessionFragment<FragmentWriteSecondBinding, Writ
         nextAvailable = true
         viewbinding.run {
             when (view.id){
-                whiteColorBtn.id -> {
+                firstStyleBtn.id -> {
                     clearRadioButtons(1)
-                    selectedColor = SelectedColor(1, 0, "흰색")
+                    selectedColor = SelectedColor(1, 0, "리조트")
                 }
-                grayColorBtn.id -> {
+                secondStyleBtn.id -> {
                     clearRadioButtons(1)
-                    selectedColor = SelectedColor(1, 1, "회색")
+                    selectedColor = SelectedColor(1, 1, "에스닉")
                 }
-                blackColorBtn.id -> {
+                thirdStyleBtn.id -> {
                     clearRadioButtons(1)
-                    selectedColor = SelectedColor(1, 2, "검은색")
+                    selectedColor = SelectedColor(1, 2, "프레피")
                 }
-                redColorBtn.id -> {
+                fourthStyleBtn.id -> {
                     clearRadioButtons(2)
-                    selectedColor = SelectedColor(2, 0, "빨간색")
+                    selectedColor = SelectedColor(2, 0, "페미닌")
                 }
-                orangeColorBtn.id -> {
+                fifthStyleBtn.id -> {
                     clearRadioButtons(2)
-                    selectedColor = SelectedColor(2, 1, "주황색")
+                    selectedColor = SelectedColor(2, 1, "매니시")
                 }
-                yellowColorBtn.id -> {
+                sixStyleBtn.id -> {
                     clearRadioButtons(2)
-                    selectedColor = SelectedColor(2, 2, "노란색")
+                    selectedColor = SelectedColor(2, 2, "젠더리스")
                 }
-                lightGreenColorBtn.id -> {
+                sevenStyleBtn.id -> {
                     clearRadioButtons(3)
-                    selectedColor = SelectedColor(3, 0, "연두색")
+                    selectedColor = SelectedColor(3, 0, "힙합")
                 }
-                greenColorBtn.id -> {
+                eightStyleBtn.id -> {
                     clearRadioButtons(3)
-                    selectedColor = SelectedColor(3, 1, "초록색")
+                    selectedColor = SelectedColor(3, 1, "펑크")
                 }
-                kakiColorBtn.id -> {
+                nineStyleBtn.id -> {
                     clearRadioButtons(3)
-                    selectedColor = SelectedColor(3, 2, "카키색")
+                    selectedColor = SelectedColor(3, 2, "스트릿")
                 }
-                lightBlueColorBtn.id -> {
+                tenStyleBtn.id -> {
                     clearRadioButtons(4)
-                    selectedColor = SelectedColor(4, 0, "하늘색")
+                    selectedColor = SelectedColor(4, 0, "밀리터리")
                 }
-                blueColorBtn.id -> {
+                elevenStyleBtn.id -> {
                     clearRadioButtons(4)
-                    selectedColor = SelectedColor(4, 1, "파란색")
+                    selectedColor = SelectedColor(4, 1, "스포티")
                 }
-                darkBlueColorBtn.id -> {
+                twelveStyleBtn.id -> {
                     clearRadioButtons(4)
-                    selectedColor = SelectedColor(4, 2, "남청색")
+                    selectedColor = SelectedColor(4, 2, "아방가르드")
                 }
-                lightPinkColorBtn.id -> {
+                thirteenStyleBtn.id -> {
                     clearRadioButtons(5)
-                    selectedColor = SelectedColor(5, 0, "연분홍색")
+                    selectedColor = SelectedColor(5, 0, "레트로")
                 }
-                pinkColorBtn.id -> {
+                fourteenStyleBtn.id -> {
                     clearRadioButtons(5)
-                    selectedColor = SelectedColor(5, 1, "진분홍색")
+                    selectedColor = SelectedColor(5, 1, "컨트리")
                 }
-                purpleColorBtn.id -> {
+                fifteenStyleBtn.id -> {
                     clearRadioButtons(5)
-                    selectedColor = SelectedColor(5, 2, "보라색")
+                    selectedColor = SelectedColor(5, 2, "키덜트")
                 }
-                brownColorBtn.id -> {
+                sixteenStyleBtn.id -> {
                     clearRadioButtons(6)
-                    selectedColor = SelectedColor(6, 0, "갈색")
+                    selectedColor = SelectedColor(6, 0, "모던")
                 }
-                otherColorBtn.id -> {
+                seventeenStyleBtn.id -> {
                     clearRadioButtons(6)
-                    selectedColor = SelectedColor(6, 1, "기타")
+                    selectedColor = SelectedColor(6, 1, "소피스트케이티드")
                 }
-                noColorBtn.id -> {
-                    clearRadioButtons(6)
-                    selectedColor = SelectedColor(6, 2, "상관없음")
-                }
+                
             }
         }
     }

@@ -143,6 +143,7 @@
         android:background="@drawable/background_8dp_rounded_dashed_box"
         android:minHeight="220dp"
         android:paddingHorizontal="60dp"
+        android:paddingVertical="10dp"
         android:scaleType="fitXY"
         android:visibility="gone" />
     <androidx.constraintlayout.widget.ConstraintLayout

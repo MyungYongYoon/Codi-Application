@@ -4,12 +4,14 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.golladreamclient.base.BaseSessionViewModel
-import com.example.golladreamclient.data.model.InputData
-import com.example.golladreamclient.data.model.OutputData
-import com.example.golladreamclient.data.model.PersonalInfo
-import com.example.golladreamclient.data.model.UserModel
+import com.example.golladreamclient.data.model.*
 import com.example.golladreamclient.data.repository.RecommendRepository
+import com.example.golladreamclient.ui.main.image.getURLEncodedFileName
 import com.example.golladreamclient.utils.SingleLiveEvent
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.time.LocalDateTime
 
@@ -19,10 +21,14 @@ class WriteViewModel(application: Application) : BaseSessionViewModel(applicatio
     val selectedImageLiveData: LiveData<File?> get() = _selectedImageLiveData
     private val _onSuccessSaveUserInfo = SingleLiveEvent<Any>()
     val onSuccessSaveUserInfo : LiveData<Any> get() = _onSuccessSaveUserInfo
+    private val _onSuccessSaveResultInfo = SingleLiveEvent<Any>()
+    val onSuccessSaveResultInfo : LiveData<Any> get() = _onSuccessSaveResultInfo
 
     private var userData : UserModel ?= null
-    private var colorData : String ?= null
+    private var styleData : String ?= null
     private var imageData : File? = null
+    private var resultImageData1 : File? = null
+    private var resultImageData2 : File? = null
 
     fun saveUserInfo(userData : UserModel) {
         apiCall(userRepository.saveUserInfo(userData),{
@@ -32,17 +38,22 @@ class WriteViewModel(application: Application) : BaseSessionViewModel(applicatio
         userData = user
     }
     fun saveSecondWriteInfo(color : String){
-        colorData = color
+        styleData = color
     }
     fun saveThirdWriteInfo(image: File){
         imageData = image
     }
+    fun saveResultInfo(image1: File?, image2 : File?){
+        resultImageData1 = image1
+        resultImageData2 = image2
+        _onSuccessSaveResultInfo.call()
+    }
     fun receiveThirdWriteInfo(imageFile: File?) = _selectedImageLiveData.postValue(imageFile)
 
     fun getWriteInfo() : InputData? {
-        return if (userData != null && colorData !=null && imageData !=null){
+        return if (userData != null && styleData !=null && imageData !=null){
             val personInfo = userData!!.getPersonalInfo()
-            InputData(userData!!.id, LocalDateTime.now().toString(), personInfo, colorData!!, imageData.toString()) //TODO : 중요
+            InputData(userData!!.id, LocalDateTime.now().toString(), personInfo, styleData!!, imageData!!)
         }else null
     }
 
@@ -50,12 +61,29 @@ class WriteViewModel(application: Application) : BaseSessionViewModel(applicatio
 
     private val reservationRepository: RecommendRepository = RecommendRepository.getInstance()
 
-    private val _onSuccessGetRecommend = SingleLiveEvent<OutputData>()
-    val onSuccessGetRecommend : LiveData<OutputData> get() = _onSuccessGetRecommend
+    private val _onSuccessSaveImage = SingleLiveEvent<ReceiverSaveInput>()
+    val onSuccessSaveImage : LiveData<ReceiverSaveInput> get() = _onSuccessSaveImage
+    private val _onSuccessGetRecommendResult = SingleLiveEvent<ReceiverRecommendOutput>()
+    val onSuccessGetRecommendResult : LiveData<ReceiverRecommendOutput> get() = _onSuccessGetRecommendResult
 
     fun postRecommendInput(data : InputData) {
-        apiCall(reservationRepository.postRecommendInput(data), {
-            _onSuccessGetRecommend.postValue(it)
+        apiCall(reservationRepository.postRecommendInput(convertInputDataToPartMap(data)), {
+            _onSuccessSaveImage.postValue(it)
         })
+    }
+
+    fun getRecommendOutput(data : InputItem){
+        apiCall(reservationRepository.getRecommendOutput(data.id, data.styleInfo, data.imageName), {
+            _onSuccessGetRecommendResult.postValue(it)
+        })  //TODO : 애니메이션 처리 해주기.(Indicator)
+    }
+
+    private fun convertInputDataToPartMap(data : InputData): HashMap<String, RequestBody> {
+        val map = HashMap<String, RequestBody>()
+        map["id"] = data.id.toRequestBody("text/plain".toMediaTypeOrNull())
+        map["style"] = data.styleInfo.toRequestBody("text/plain".toMediaTypeOrNull())
+        val fileBody = data.image.asRequestBody("image/jpeg".toMediaTypeOrNull())
+        map["image\"; filename=\"" + data.image.name.getURLEncodedFileName()] = fileBody
+        return map
     }
 }

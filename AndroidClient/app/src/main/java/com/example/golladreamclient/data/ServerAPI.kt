@@ -13,7 +13,7 @@ import retrofit2.http.*
 
 interface ServerAPI {
     companion object {
-        private const val BASE_URL = "http:/192.168.25.29:8080"   //TODO : (Linking change) local -> remote.
+        private const val BASE_URL = "http:/172.30.1.60:8080"   //TODO : (Linking change) local -> remote.
         fun create(): ServerAPI {
             val httpLoggingInterceptor = HttpLoggingInterceptor()
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -48,8 +48,13 @@ interface ServerAPI {
     @GET("/user/withdrawal")
     fun withdrawalUser(@Query("id")id : String) : Single<Boolean>
 
+    @Multipart
     @POST("recommend/input")
-    fun postRecommendInput(@Body data: InputData) : Single<OutputData>
+    fun postRecommendInput(@PartMap data: HashMap<String, RequestBody>) : Single<ReceiverSaveInput>
+
+    @GET("recommend/output")
+    fun getRecommendOutput(@Query("id")userId : String, @Query("style")styleInfo : String,
+                           @Query("image") imageName : String) : Single<ReceiverRecommendOutput>
 
 
 }

@@ -13,6 +13,7 @@ import coil.load
 import com.example.golladreamclient.R
 import com.example.golladreamclient.base.BaseSessionFragment
 import com.example.golladreamclient.data.model.InputData
+import com.example.golladreamclient.data.model.RecommendResult
 import com.example.golladreamclient.databinding.FragmentWriteThirdBinding
 import java.io.File
 
@@ -56,10 +57,20 @@ class WriteThirdFragment  : BaseSessionFragment<FragmentWriteThirdBinding, Write
                 }
             }
         }
-        viewmodel.onSuccessGetRecommend.observe(viewLifecycleOwner){
-            //TODO
-            //이거 가져올때까지 apiCall -> 로딩 처리 필요.
-            //다음 페이지로 넘어가면서 (it) 전해주고 이를 뷰에 띄우기.
+        viewmodel.onSuccessSaveImage.observe(viewLifecycleOwner){
+            if (!it.exist) showSnackbar("에러가 발생했습니다. 잠시 후 다시 시도해주세요.")
+            else viewmodel.getRecommendOutput(it.returnData)
+        }
+        viewmodel.onSuccessGetRecommendResult.observe(viewLifecycleOwner){
+            when(it.type){
+                RecommendResult.NONE -> showSnackbar("인식할 수 없는 사진입니다.\n유저님의 전신사진을 넣어주세요.")
+                RecommendResult.TOP -> viewmodel.saveResultInfo(it.data1, null)
+                RecommendResult.BOTTOM -> viewmodel.saveResultInfo(it.data1, null)
+                RecommendResult.ALL -> viewmodel.saveResultInfo(it.data1, it.data2)
+            }
+        }
+        viewmodel.onSuccessSaveResultInfo.observe(viewLifecycleOwner){
+            //TODO : 다음 화면으로 넘어가기.
         }
     }
 
@@ -70,7 +81,7 @@ class WriteThirdFragment  : BaseSessionFragment<FragmentWriteThirdBinding, Write
             if (nextAvailable) {
                 selectedPicture?.let { viewmodel.saveThirdWriteInfo(it) }
                 val totalInfo : InputData? = viewmodel.getWriteInfo()
-                if (totalInfo == null) showToast("에러가 발생했습니다.")         //TODO : 에러처리
+                if (totalInfo == null) showToast("에러가 발생했습니다.")
                 else viewmodel.postRecommendInput(totalInfo)
             }
         }
