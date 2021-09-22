@@ -1,5 +1,6 @@
 package com.example.userapp.base
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 import com.example.golladreamclient.base.BaseActivityViewModel
+import com.example.golladreamclient.utils.LoadingIndicator
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -29,10 +31,14 @@ abstract class BaseActivity<VB : ViewBinding, VM : BaseActivityViewModel>: AppCo
         compositeDisposable.add(disposable)
     }
 
+    private var mLoadingIndicator: Dialog? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initViewbinding()
+        mLoadingIndicator = LoadingIndicator(applicationContext)
+
         initViewStart(savedInstanceState)
         initDataBinding(savedInstanceState)
         initViewFinal(savedInstanceState)
@@ -48,7 +54,14 @@ abstract class BaseActivity<VB : ViewBinding, VM : BaseActivityViewModel>: AppCo
 
     abstract fun initToolbar()
 
-
+    private fun stopLoadingIndicator() {
+        mLoadingIndicator?.let {
+            if(it.isShowing){
+                it.dismiss()
+                mLoadingIndicator = null
+            }
+        }
+    }
 
     @Throws(IllegalArgumentException::class)
     fun showSnackbar(message: String) {

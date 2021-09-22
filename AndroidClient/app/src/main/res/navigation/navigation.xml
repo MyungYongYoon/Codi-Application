@@ -290,6 +290,15 @@
                 app:exitAnim="@anim/slide_exit"
                 app:popEnterAnim="@anim/slide_pop_enter"
                 app:popExitAnim="@anim/slide_pop_exit"/>
+            <action
+                android:id="@+id/action_writeThirdFragment_to_writeResultFragment"
+                app:destination="@id/writeResultFragment"
+                app:enterAnim="@anim/slide_enter"
+                app:exitAnim="@anim/slide_exit"
+                app:popEnterAnim="@anim/slide_pop_enter"
+                app:popExitAnim="@anim/slide_pop_exit"
+                app:popUpTo="@id/writeFirstFragment"
+                app:popUpToInclusive="true" />
         </fragment>
         <fragment
             android:id="@+id/writeImagePickerFragment"
@@ -312,6 +321,20 @@
                 android:id="@+id/action_imageCropperFragment_pop_including_writeImagePickerFragment"
                 app:popUpTo="@id/writeImagePickerFragment"
                 app:popUpToInclusive="true" />
+        </fragment>
+        <fragment
+            android:id="@+id/writeResultFragment"
+            android:name="com.example.golladreamclient.ui.main.write.WriteResultFragment"
+            android:label="WriteResultFragment"
+            tools:layout="@layout/fragment_write_result">
+            <action
+                android:id="@+id/action_writeResultFragment_pop"
+                app:popUpTo="@id/writeResultFragment"
+                app:popUpToInclusive="true"
+                app:enterAnim="@anim/slide_enter"
+                app:exitAnim="@anim/slide_exit"
+                app:popEnterAnim="@anim/slide_pop_enter"
+                app:popExitAnim="@anim/slide_pop_exit"/>
         </fragment>
     </navigation>
 </navigation>

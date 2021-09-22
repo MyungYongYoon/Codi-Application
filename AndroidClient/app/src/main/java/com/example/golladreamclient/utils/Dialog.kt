@@ -2,6 +2,7 @@ package com.example.golladreamclient.utils
 
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.InsetDrawable
@@ -21,6 +22,17 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlin.system.exitProcess
 
+class LoadingIndicator(context: Context?) : Dialog(context!!) {
+    init {
+        setCancelable(false)
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        if (window != null) window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        setContentView(R.layout.dialog_loading_indicator)
+    }
+    override fun setOnShowListener(listener: DialogInterface.OnShowListener?) {
+        super.setOnShowListener(listener)
+    }
+}
 
 class WrapedDialogBasicTwoButton (context: Context, content: String, closeBtnText: String, customBtnText: String) : Dialog(context){
 

@@ -2,6 +2,7 @@ package com.example.golladreamclient.ui.main.write
 
 import android.Manifest
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.example.golladreamclient.base.BaseSessionFragment
 import com.example.golladreamclient.data.model.InputData
 import com.example.golladreamclient.data.model.RecommendResult
 import com.example.golladreamclient.databinding.FragmentWriteThirdBinding
+import com.example.golladreamclient.utils.WrapedDialogBasicOneButton
 import java.io.File
 
 class WriteThirdFragment  : BaseSessionFragment<FragmentWriteThirdBinding, WriteViewModel>(){
@@ -62,15 +64,18 @@ class WriteThirdFragment  : BaseSessionFragment<FragmentWriteThirdBinding, Write
             else viewmodel.getRecommendOutput(it.returnData)
         }
         viewmodel.onSuccessGetRecommendResult.observe(viewLifecycleOwner){
+            Log.e("checking!!", "$it" )
             when(it.type){
-                RecommendResult.NONE -> showSnackbar("인식할 수 없는 사진입니다.\n유저님의 전신사진을 넣어주세요.")
-                RecommendResult.TOP -> viewmodel.saveResultInfo(it.data1, null)
-                RecommendResult.BOTTOM -> viewmodel.saveResultInfo(it.data1, null)
-                RecommendResult.ALL -> viewmodel.saveResultInfo(it.data1, it.data2)
+                RecommendResult.ERROR -> showSnackbar("에러가 발생했습니다. 잠시 후 다시 시도해주세요.")
+                RecommendResult.NOT_RIGHT -> showSnackbar("인식할 수 없는 사진입니다.\n유저님의 전신사진을 넣어주세요.")
+                RecommendResult.NOT_EXIST -> makeDialog("추천드릴 정보가 부족하네요..ㅠ^ㅠ\n앞으로 발전하는 골라드림이 되겠습니다!")
+                RecommendResult.NONE -> viewmodel.saveResultInfo(null, null)
+                RecommendResult.ONE -> viewmodel.saveResultInfo(it.data1, null)
+                RecommendResult.TWO -> viewmodel.saveResultInfo(it.data1, it.data2)
             }
         }
         viewmodel.onSuccessSaveResultInfo.observe(viewLifecycleOwner){
-            //TODO : 다음 화면으로 넘어가기.
+            findNavController().navigate(R.id.action_writeThirdFragment_to_writeResultFragment)
         }
     }
 
@@ -104,6 +109,17 @@ class WriteThirdFragment  : BaseSessionFragment<FragmentWriteThirdBinding, Write
             if (nextAvailable) submitBtn.setBackgroundResource(R.drawable.button_5dp_rectangle_purple)
             else submitBtn.setBackgroundResource(R.drawable.button_5dp_rectangle_black20)
         }
+    }
+
+    private fun makeDialog(msg : String){
+        val dialog = WrapedDialogBasicOneButton(requireContext(), msg).apply {
+            setCanceledOnTouchOutside(false)
+            clickListener = object : WrapedDialogBasicOneButton.DialogButtonClickListener{
+                override fun dialogClickListener() {
+                    dismiss() }
+            }
+        }
+        showDialog(dialog, viewLifecycleOwner)
     }
 
 }

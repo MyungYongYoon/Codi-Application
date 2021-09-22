@@ -13,7 +13,7 @@ import retrofit2.http.*
 
 interface ServerAPI {
     companion object {
-        private const val BASE_URL = "http:/172.30.1.60:8080"   //TODO : (Linking change) local -> remote.
+        private const val BASE_URL = "http:/192.168.200.155:8080"   //TODO : (Linking change) local -> remote.
         fun create(): ServerAPI {
             val httpLoggingInterceptor = HttpLoggingInterceptor()
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY

@@ -16,11 +16,11 @@ data class PersonalInfo(val id: String = "",
 
 /*data class ResultData(val id : String, val dateTime : String, val personalInfo : PersonalInfo, val image : String, val recommendInfo : RecommendInfo)*/
 
-data class ReceiverRecommendOutput(val type : RecommendResult, val data1 : File?, val data2 : File?)
+data class ReceiverRecommendOutput(val type : RecommendResult, val data1 : String?, val data2 : String?)
 
 data class ReceiverSaveInput(val exist : Boolean, val returnData : SaveResult?)
 
 data class SaveResult (val id : String, val styleInfo: String, val imageName : String)
 
-enum class RecommendResult{ NONE, TOP, BOTTOM, ALL }
+enum class RecommendResult{ NONE, ONE, TWO, NOT_EXIST, NOT_RIGHT, ERROR }
 

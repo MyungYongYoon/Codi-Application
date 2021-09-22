@@ -32,6 +32,10 @@ abstract class BaseViewModel  : ViewModel(){
 
     private val snackbarMessageString = SnackbarMessageString()
 
+    private val _startLoadingIndicatorEvent: SingleLiveEvent<Boolean> = SingleLiveEvent()
+    val startLoadingIndicatorEvent: LiveData<Boolean> get() = _startLoadingIndicatorEvent
+    private val _stopLoadingIndicatorEvent: SingleLiveEvent<Boolean> = SingleLiveEvent()
+    val stopLoadingIndicatorEvent: LiveData<Boolean> get() = _stopLoadingIndicatorEvent
     private val _apiCallErrorEvent: SingleLiveEvent<String> = SingleLiveEvent()
     val apiCallErrorEvent: LiveData<String> get() = _apiCallErrorEvent
 
@@ -41,12 +45,12 @@ abstract class BaseViewModel  : ViewModel(){
                              _apiCallErrorEvent.postValue(it.message)
                              showSnackbar("오류가 발생했습니다. ${it.message}")
                          },
-                         indicator : Boolean = false, timeout: Long = 10){
+                         indicator : Boolean = false, timeout: Long = 30){
         addDisposable(single.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .timeout(timeout, TimeUnit.SECONDS)
-/*            .doOnSubscribe{ if(indicator) startLoadingIndicator() }
-            .doAfterTerminate { stopLoadingIndicator() }*/
+            .doOnSubscribe{ if(indicator) startLoadingIndicator() }
+            .doAfterTerminate { stopLoadingIndicator() }
             .subscribe(onSuccess, onError))
     }
 
@@ -58,12 +62,19 @@ abstract class BaseViewModel  : ViewModel(){
                     _apiCallErrorEvent.postValue(it.message)
                     showSnackbar("오류가 발생했습니다. ${it.message}")
                 },
-                indicator: Boolean = false,
                 timeout: Long = 5){
         addDisposable(completable.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .timeout(timeout, TimeUnit.SECONDS)
             .subscribe(onComplete, onError))
+    }
+
+    private fun startLoadingIndicator(){
+        _startLoadingIndicatorEvent.call()
+    }
+
+    private fun stopLoadingIndicator(){
+        _stopLoadingIndicatorEvent.call()
     }
 
     fun observeSnackbarMessageString(lifecycleOwner: LifecycleOwner, ob: (String) -> Unit){
@@ -72,6 +83,10 @@ abstract class BaseViewModel  : ViewModel(){
 
     fun showSnackbar(str: String){
         snackbarMessageString.postValue(str)
+    }
+
+    fun unbind(){
+        compositeDisposable.clear()
     }
 
 }

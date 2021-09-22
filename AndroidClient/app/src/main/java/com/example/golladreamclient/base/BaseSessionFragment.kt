@@ -26,6 +26,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.viewbinding.ViewBinding
 import com.example.golladreamclient.R
 import com.example.golladreamclient.restartActivity
+import com.example.golladreamclient.utils.LoadingIndicator
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -60,7 +61,10 @@ abstract class BaseSessionFragment<VB : ViewBinding, VM : BaseSessionViewModel> 
         initViewStart(savedInstanceState)
         initDataBinding(savedInstanceState)
         initViewFinal(savedInstanceState)
+
+        loadingIndicatorObserving()
         snackbarObserving()
+
         viewmodel.sessionInvalidEvent.observe(viewLifecycleOwner, { this.sessionRestart() })
     }
 
@@ -71,8 +75,34 @@ abstract class BaseSessionFragment<VB : ViewBinding, VM : BaseSessionViewModel> 
     abstract fun initViewFinal(savedInstanceState: Bundle?)     //세번째, 마무리 커스텀 (ex. 클릭리스너 이벤트)
 
 
+    private var mLoadingIndicator: Dialog? = null
 
-    fun snackbarObserving() {
+    private fun stopLoadingIndicator() {
+        mLoadingIndicator?.let {
+            if (it.isShowing) it.cancel()
+        }
+    }
+
+    private fun startLoadingIndicator() {
+        stopLoadingIndicator()
+        activity?.let {
+            if (!it.isFinishing) {
+                mLoadingIndicator = LoadingIndicator(activity)
+                mLoadingIndicator?.show()
+            }
+        }
+    }
+
+    override fun loadingIndicatorObserving() {
+        viewmodel.startLoadingIndicatorEvent.observe(viewLifecycleOwner, {
+            startLoadingIndicator()
+        })
+        viewmodel.stopLoadingIndicatorEvent.observe(viewLifecycleOwner, {
+            stopLoadingIndicator()
+        })
+    }
+
+    override fun snackbarObserving() {
         viewmodel.observeSnackbarMessageString(viewLifecycleOwner) { str ->
             if (isDetached)
                 return@observeSnackbarMessageString

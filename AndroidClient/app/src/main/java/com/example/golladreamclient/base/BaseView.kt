@@ -6,6 +6,9 @@ import androidx.annotation.StringRes
 
 interface BaseView {
 
+    fun snackbarObserving()
+
+    fun loadingIndicatorObserving()
 
     fun showSnackbar(message : String)
 

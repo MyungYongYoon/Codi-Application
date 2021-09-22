@@ -3,18 +3,27 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/drawable/background_8dp_rounded_dashed_box.xml" value="0.1546875" />
         <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/drawable/background_oval_light_purple.xml" value="0.15208333333333332" />
         <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/drawable/background_oval_purple.xml" value="0.15208333333333332" />
+        <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/drawable/ic_profile.xml" value="0.20625" />
         <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/drawable/image_logo1.xml" value="0.16197916666666667" />
         <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/drawable/image_logo2_horizontal.xml" value="0.16197916666666667" />
         <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/drawable/image_logo2_vertical.xml" value="0.16197916666666667" />
+        <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/layout/dialog_basic_one_button.xml" value="0.228125" />
+        <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/layout/dialog_full_basic_one_button.xml" value="0.228125" />
+        <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/layout/dialog_loading_indicator.xml" value="0.2" />
         <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/layout/fragment_intro.xml" value="0.4" />
-        <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/layout/fragment_main.xml" value="0.2" />
+        <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/layout/fragment_main.xml" value="0.264" />
         <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/layout/fragment_signin.xml" value="0.14583333333333334" />
+        <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/layout/fragment_signin_find_info.xml" value="0.228125" />
         <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/layout/fragment_signup_first.xml" value="0.13958333333333334" />
+        <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/layout/fragment_signup_permission.xml" value="0.228125" />
         <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/layout/fragment_signup_second.xml" value="0.1359375" />
+        <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/layout/fragment_write_first.xml" value="0.2" />
+        <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/layout/fragment_write_result.xml" value="0.176" />
         <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/layout/fragment_write_second.xml" value="0.176" />
-        <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/layout/fragment_write_third.xml" value="0.14583333333333334" />
+        <entry key="..\:/Programs/ZProjects/FinalProjects/Codi-Application/AndroidClient/app/src/main/res/layout/fragment_write_third.xml" value="0.176" />
       </map>
     </option>
   </component>

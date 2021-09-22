@@ -1,6 +1,7 @@
 package com.example.golladreamclient.ui.main.write
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.golladreamclient.base.BaseSessionViewModel
@@ -27,8 +28,8 @@ class WriteViewModel(application: Application) : BaseSessionViewModel(applicatio
     private var userData : UserModel ?= null
     private var styleData : String ?= null
     private var imageData : File? = null
-    private var resultImageData1 : File? = null
-    private var resultImageData2 : File? = null
+    private var resultImageData1 : String? = null
+    private var resultImageData2 : String? = null
 
     fun saveUserInfo(userData : UserModel) {
         apiCall(userRepository.saveUserInfo(userData),{
@@ -43,7 +44,7 @@ class WriteViewModel(application: Application) : BaseSessionViewModel(applicatio
     fun saveThirdWriteInfo(image: File){
         imageData = image
     }
-    fun saveResultInfo(image1: File?, image2 : File?){
+    fun saveResultInfo(image1: String?, image2 : String?){
         resultImageData1 = image1
         resultImageData2 = image2
         _onSuccessSaveResultInfo.call()
@@ -55,6 +56,11 @@ class WriteViewModel(application: Application) : BaseSessionViewModel(applicatio
             val personInfo = userData!!.getPersonalInfo()
             InputData(userData!!.id, LocalDateTime.now().toString(), personInfo, styleData!!, imageData!!)
         }else null
+    }
+    fun getResultInfo() : List<String>{
+        return if (resultImageData1 == null && resultImageData2 == null) emptyList()
+        else if (resultImageData1 != null && resultImageData2 == null) listOf(resultImageData1!!)
+        else listOf(resultImageData1!!, resultImageData2!!)
     }
 
     //----------------------------------------------------------------------------------------------------
@@ -74,8 +80,7 @@ class WriteViewModel(application: Application) : BaseSessionViewModel(applicatio
 
     fun getRecommendOutput(data : InputItem){
         apiCall(reservationRepository.getRecommendOutput(data.id, data.styleInfo, data.imageName), {
-            _onSuccessGetRecommendResult.postValue(it)
-        })  //TODO : 애니메이션 처리 해주기.(Indicator)
+            _onSuccessGetRecommendResult.postValue(it) }, indicator = true)
     }
 
     private fun convertInputDataToPartMap(data : InputData): HashMap<String, RequestBody> {
